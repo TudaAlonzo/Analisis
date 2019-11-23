@@ -1,0 +1,422 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>P06ASyS20201</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-11-22"><meta name="DC.source" content="P06ASyS20201.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Pr&aacute;ctica 6:  Sistemas diferenciales y en diferencias</a></li><li><a href="#2">Nota</a></li><li><a href="#4">Sistemas diferenciales (Transformada de Fourier)</a></li><li><a href="#5">Entregables sistemas diferenciales</a></li><li><a href="#6">Entregables sistemas en diferencias</a></li><li><a href="#7">Practica 6. Se&ntilde;ales continuas</a></li><li><a href="#8">Practica 6. Se&ntilde;ales discretas</a></li></ul></div><h2>Pr&aacute;ctica 6:  Sistemas diferenciales y en diferencias<a name="1"></a></h2><pre class="codeinput"><span class="comment">%%Instituto Politecnico Nacional</span>
+<span class="comment">%%Upiita</span>
+<span class="comment">%%Analisis de Se&ntilde;ales y sistemas</span>
+<span class="comment">%%2MV1</span>
+<span class="comment">% * Guerrero Aguilar Luis Abraham</span>
+<span class="comment">% * Dur&aacute;n Espino Rodrigo Baltazar</span>
+<span class="comment">% * L&oacute;pez Casas Leonel Isaac</span>
+<span class="comment">% * Tuda Alonzo Roberto Samuel</span>
+</pre><h2>Nota<a name="2"></a></h2><p>Se tiene que MATLAB presenta una definici&oacute;n del escal&oacute;n unitario <tt>heaviside(t)</tt>, donde <tt>heaviside(0)=0.5</tt>, para versiones mayores o iguales a 2016 esto puede configurarse al valor que se quiera, en nuestro caso queremos <tt>heaviside(0)=1</tt>, esto se logra ejecutando la siguiente instrucci&oacute;n</p><pre class="codeinput">sympref(<span class="string">'HeavisideAtOrigin'</span>, 1);
+</pre><p>de no ser posible establecer la configuraci&oacute;n se tiene que tener en cuenta la definici&oacute;n de MATLAB.</p><h2>Sistemas diferenciales (Transformada de Fourier)<a name="4"></a></h2><p>Se utiliza el toolbox con herramientas de matem&aacute;ticas s&iacute;mbolicas, para generar un programa que resuelve sistemas diferenciales de orden n mediante transformada de Fourier, el programa despliega: paso por paso la metodolog&iacute;a de soluci&oacute;n, la soluci&oacute;n de la ecuaci&oacute;n diferencial, y la gr&aacute;fica tanto de la se&ntilde;al de entrada como de la se&ntilde;al de salida.</p><h2>Entregables sistemas diferenciales<a name="5"></a></h2><p>Para sistemas diferenciales realiza un programa con las siguientes caracter&iacute;sticas</p><div><ol><li>Muestra la funci&oacute;n de transferencia del sistema</li><li>Muestra la respuesta al impulso (simb&oacute;lico, gr&aacute;fica)</li><li>Muestra la respuesta a entrada cero (simb&oacute;lico, gr&aacute;fica)</li><li>Muestra la respuesta a estado cero (simb&oacute;lico, gr&aacute;fica)</li><li>Muestra la respuesta total (simb&oacute;lico, gr&aacute;fica)</li><li>La respuesta total al escal&oacute;n con condiciones iniciales 0 (simb&oacute;lico, gr&aacute;fica)</li><li>Usando subplot, depliega una figura con 5 gr&aacute;ficas</li></ol></div><p>Observa que los entregables pueden resolverse (solvo la funci&oacute;n de transferencia) con llamadas a la funciones presentadas en esta publicaci&oacute;n</p><p>Nota: Ejecuta los ejemplos descritos dentro de los comentarios de cada c&oacute;digo para que observes el uso de estos</p><h2>Entregables sistemas en diferencias<a name="6"></a></h2><p>Para sistemas diferenciales realiza un programa con las siguientes caracter&iacute;sticas</p><div><ol><li>Muestra la funci&oacute;n de transferencia del sistema</li><li>Muestra la respuesta al impulso (simb&oacute;lico, gr&aacute;fica, ver KroneckerDelta)</li><li>Muestra la respuesta a entrada cero (simb&oacute;lico, gr&aacute;fica)</li><li>Muestra la respuesta a estado cero (simb&oacute;lico, gr&aacute;fica)</li><li>Muestra la respuesta total (simb&oacute;lico, gr&aacute;fica)</li><li>La respuesta total al escal&oacute;n con condiciones iniciales 0 (simb&oacute;lico, gr&aacute;fica)</li><li>Usando subplot, depliega una figura con 5 gr&aacute;ficas</li></ol></div><p>Observa que los entregables pueden resolverse (solvo la funci&oacute;n de transferencia) con llamadas a la funciones presentadas en esta publicaci&oacute;n</p><h2>Practica 6. Se&ntilde;ales continuas<a name="7"></a></h2><pre class="codeinput"><span class="comment">%%$${y(t)}\ddot+7{y(t)}\dot+10y(t)=sin(t), y(0)=0, y'(0)=1$$</span>
+sympref(<span class="string">'HeavisideAtOrigin'</span>, 1);
+syms <span class="string">t</span>;
+disp(<span class="string">'Se&ntilde;ales continuas'</span>)
+
+figure (1)
+hFig = figure(1);
+set(hFig, <span class="string">'Position'</span>, [0 0 900 900])
+axes1 = axes(<span class="string">'Parent'</span>,hFig,<span class="string">'FontWeight'</span>,<span class="string">'bold'</span>,<span class="string">'FontSize'</span>,16);
+
+subplot(2,3,1);
+laplace2016a([10 7 1],[1],[0,1],dirac(t),10,<span class="string">'Respuesta al impulso'</span>)
+xlabel(<span class="string">'tiempo'</span>,<span class="string">'FontWeight'</span>,<span class="string">'bold'</span>,<span class="string">'FontSize'</span>,10)
+title(<span class="string">'Respuesta al impulso'</span>,<span class="string">'FontWeight'</span>,<span class="string">'bold'</span>,<span class="string">'FontSize'</span>,10)
+
+subplot(2,3,2);
+laplace2016b([10 7 1],[1],[0,1],0,10,<span class="string">'Respuesta a entrada 0'</span>)
+xlabel(<span class="string">'tiempo'</span>,<span class="string">'FontWeight'</span>,<span class="string">'bold'</span>,<span class="string">'FontSize'</span>,10)
+title(<span class="string">'Respuesta a entrada 0'</span>,<span class="string">'FontWeight'</span>,<span class="string">'bold'</span>,<span class="string">'FontSize'</span>,10)
+
+subplot(2,3,3);
+laplace2016a([10 7 1],[1],[0,0],sin(t),10,<span class="string">'Respuesta a estado 0'</span>)
+xlabel(<span class="string">'tiempo'</span>,<span class="string">'FontWeight'</span>,<span class="string">'bold'</span>,<span class="string">'FontSize'</span>,10)
+title(<span class="string">'Respuesta a estado 0'</span>,<span class="string">'FontWeight'</span>,<span class="string">'bold'</span>,<span class="string">'FontSize'</span>,10)
+
+subplot(2,3,4);
+laplace2016a([10 7 1],[1],[0,1],sin(t),10,<span class="string">'Respuesta total'</span>)
+xlabel(<span class="string">'tiempo'</span>,<span class="string">'FontWeight'</span>,<span class="string">'bold'</span>,<span class="string">'FontSize'</span>,10)
+title(<span class="string">'Respuesta total'</span>,<span class="string">'FontWeight'</span>,<span class="string">'bold'</span>,<span class="string">'FontSize'</span>,10)
+
+subplot(2,3,5);
+laplace2016a([10 7 1],[1],[0,0],heaviside(t),10,<span class="string">'Respuesta total'</span>)
+xlabel(<span class="string">'tiempo'</span>,<span class="string">'FontWeight'</span>,<span class="string">'bold'</span>,<span class="string">'FontSize'</span>,10)
+title(<span class="string">'Respuesta total'</span>,<span class="string">'FontWeight'</span>,<span class="string">'bold'</span>,<span class="string">'FontSize'</span>,10)
+</pre><pre class="codeoutput">Se&ntilde;ales continuas
+ 
+Respuesta al impulso
+ 
+y(t)=
+exp(-2 t) 2   exp(-5 t) 2
+----------- - -----------
+     3             3
+
+ 
+Respuesta a entrada 0
+ 
+y(t)=
+exp(-2 t)   exp(-5 t)
+--------- - ---------
+    3           3
+
+ 
+Respuesta a estado 0
+ 
+y(t)=
+exp(-2 t)   exp(-5 t)   7 cos(t)   9 sin(t)
+--------- - --------- - -------- + --------
+    15          78         130        130
+
+ 
+Respuesta total
+ 
+y(t)=
+exp(-2 t) 2   exp(-5 t) 9   7 cos(t)   9 sin(t)
+----------- - ----------- - -------- + --------
+     5             26          130        130
+
+ 
+Respuesta total
+ 
+y(t)=
+exp(-5 t)   exp(-2 t)    1
+--------- - --------- + --
+    15          6       10
+
+</pre><img vspace="5" hspace="5" src="P06ASyS20201_01.png" alt=""> <h2>Practica 6. Se&ntilde;ales discretas<a name="8"></a></h2><pre class="codeinput"><span class="comment">%%$$y[n+2]+3y[n+1]+2y[n]=f[n+1]+3f[n]     y[0]=1   y[1]=2   f[n]=sin[n]    f[0]=1$$</span>
+
+
+syms <span class="string">n</span>;
+figure (2)
+hFig = figure(2);
+set(hFig, <span class="string">'Position'</span>, [0 0 900 900])
+axes1 = axes(<span class="string">'Parent'</span>,hFig,<span class="string">'FontWeight'</span>,<span class="string">'bold'</span>,<span class="string">'FontSize'</span>,16);
+
+subplot(2,3,1);
+zeta2016a([1 3 2],[1 3],[2 1],[1],kroneckerDelta(n),5,<span class="string">'Respuesta al impulso'</span>)
+xlabel(<span class="string">'tiempo'</span>,<span class="string">'FontWeight'</span>,<span class="string">'bold'</span>,<span class="string">'FontSize'</span>,10)
+title(<span class="string">'Respuesta al impulso'</span>,<span class="string">'FontWeight'</span>,<span class="string">'bold'</span>,<span class="string">'FontSize'</span>,10)
+
+subplot(2,3,2);
+zeta2016b([1 3 2],[1 3],[2 1],[1],-4,5,<span class="string">'Respuesta entrada 0'</span>)
+xlabel(<span class="string">'tiempo'</span>,<span class="string">'FontWeight'</span>,<span class="string">'bold'</span>,<span class="string">'FontSize'</span>,10)
+title(<span class="string">'Respuesta entrada 0'</span>,<span class="string">'FontWeight'</span>,<span class="string">'bold'</span>,<span class="string">'FontSize'</span>,10)
+
+subplot(2,3,3);
+zeta2016a([1 3 2],[1 3],[0 1],[1],sin(n),5,<span class="string">'Respuesta estado cero'</span>)
+xlabel(<span class="string">'tiempo'</span>,<span class="string">'FontWeight'</span>,<span class="string">'bold'</span>,<span class="string">'FontSize'</span>,10)
+title(<span class="string">'Respuesta estado cero'</span>,<span class="string">'FontWeight'</span>,<span class="string">'bold'</span>,<span class="string">'FontSize'</span>,10)
+
+subplot(2,3,4);
+zeta2016a([1 3 2],[1 3],[2 1],[1],sin(n),5,<span class="string">'Respuesta total'</span>)
+xlabel(<span class="string">'tiempo'</span>,<span class="string">'FontWeight'</span>,<span class="string">'bold'</span>,<span class="string">'FontSize'</span>,10)
+title(<span class="string">'Respuesta total'</span>,<span class="string">'FontWeight'</span>,<span class="string">'bold'</span>,<span class="string">'FontSize'</span>,10)
+
+subplot(2,3,5);
+zeta2016a([1 3 2],[1 3],[2 1],[1],heaviside(n),5,<span class="string">'Respuesta total heaviside'</span>)
+xlabel(<span class="string">'tiempo'</span>,<span class="string">'FontWeight'</span>,<span class="string">'bold'</span>,<span class="string">'FontSize'</span>,10)
+title(<span class="string">'Respuesta total heaviside'</span>,<span class="string">'FontWeight'</span>,<span class="string">'bold'</span>,<span class="string">'FontSize'</span>,10)
+</pre><pre class="codeoutput"> 
+Respuesta al impulso
+ 
+y(n)=
+              n
+    n   3 (-2)    3 kroneckerDelta(n, 0)
+(-1)  - ------- + ----------------------
+           2                 2
+
+ 
+Respuesta entrada 0
+ 
+y(n)=
+      n         n
+4 (-1)  - 3 (-2)
+
+ 
+Respuesta estado cero
+ 
+y(n)=
+                              /     n                        \
+                              | (-2)    kroneckerDelta(n, 0) |
+                       sin(1) | ----- - -------------------- | 2
+                              \   2               2          /
+kroneckerDelta(n, 0) - -----------------------------------------
+                                           #1
+
+          n
+     ((-1)  - kroneckerDelta(n, 0)) (cos(1) + sin(1) + 1)
+   + ----------------------------------------------------
+                          cos(1) + 1
+
+   +
+
+                            cos(n) (3 sin(1) + #4)   cos(n) #2   sin(n) #2
+  #3 kroneckerDelta(n, 0) + ---------------------- - --------- + ---------
+                                    cos(1)             cos(1)      sin(1)
+  ------------------------------------------------------------------------
+                               #1 (cos(1) + 1)
+
+where
+
+   #1 == 4 cos(1) + 5
+
+   #2 == 3 sin(1) + cos(1) #3 + #4
+
+   #3 == 4 sin(1) + 3 cos(1) sin(1)
+
+   #4 == 2 cos(1) sin(1)
+
+
+ 
+Respuesta total
+ 
+y(n)=
+kroneckerDelta(n,
+
+            n
+       ((-1)  - kroneckerDelta(n, 0)) (3 cos(1) + sin(1) + 3)
+  0) + ------------------------------------------------------
+                             cos(1) + 1
+
+   +
+
+                            cos(n) (3 sin(1) + #4)   cos(n) #2   sin(n) #2
+  #3 kroneckerDelta(n, 0) + ---------------------- - --------- + ---------
+                                    cos(1)             cos(1)      sin(1)
+  ------------------------------------------------------------------------
+                               #1 (cos(1) + 1)
+
+     /     n                        \
+     | (-2)    kroneckerDelta(n, 0) |
+     | ----- - -------------------- | (16 cos(1) + 2 sin(1) + 20)
+     \   2               2          /
+   - ------------------------------------------------------------
+                                  #1
+
+where
+
+   #1 == 4 cos(1) + 5
+
+   #2 == 3 sin(1) + cos(1) #3 + #4
+
+   #3 == 4 sin(1) + 3 cos(1) sin(1)
+
+   #4 == 2 cos(1) sin(1)
+
+
+ 
+Respuesta total heaviside
+ 
+y(n)=
+                n
+      n   5 (-2)    2
+2 (-1)  - ------- + -
+             3      3
+
+</pre><img vspace="5" hspace="5" src="P06ASyS20201_02.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Práctica 6:  Sistemas diferenciales y en diferencias
+%%Instituto Politecnico Nacional
+%%Upiita
+%%Analisis de Señales y sistemas
+%%2MV1
+% * Guerrero Aguilar Luis Abraham
+% * Durán Espino Rodrigo Baltazar
+% * López Casas Leonel Isaac
+% * Tuda Alonzo Roberto Samuel
+%% Nota
+% Se tiene que
+% MATLAB presenta una definición del escalón unitario |heaviside(t)|, donde 
+% |heaviside(0)=0.5|, para versiones mayores o iguales a 2016 esto puede
+% configurarse al valor que se quiera, en nuestro caso queremos 
+% |heaviside(0)=1|, esto se logra ejecutando la siguiente instrucción 
+sympref('HeavisideAtOrigin', 1);
+%% 
+% de no ser posible establecer la configuración se tiene que tener en
+% cuenta la definición de MATLAB.
+%% Sistemas diferenciales (Transformada de Fourier) 
+% Se utiliza el toolbox con herramientas de matemáticas símbolicas, para
+% generar un programa que resuelve sistemas diferenciales de orden n
+% mediante transformada de Fourier, el programa despliega: paso por paso 
+% la metodología de solución, la solución de la ecuación diferencial, 
+% y la gráfica tanto de la señal de entrada como de la señal de salida. 
+%% Entregables sistemas diferenciales
+% Para sistemas diferenciales realiza un programa con las siguientes
+% características
+% 
+% # Muestra la función de transferencia del sistema
+% # Muestra la respuesta al impulso (simbólico, gráfica)
+% # Muestra la respuesta a entrada cero (simbólico, gráfica)
+% # Muestra la respuesta a estado cero (simbólico, gráfica)
+% # Muestra la respuesta total (simbólico, gráfica)
+% # La respuesta total al escalón con condiciones iniciales 0 (simbólico, gráfica) 
+% # Usando subplot, depliega una figura con 5 gráficas
+% 
+% Observa que los entregables pueden resolverse (solvo la función de 
+% transferencia) con llamadas a la funciones
+% presentadas en esta publicación
+%
+% Nota: Ejecuta los ejemplos descritos dentro de los comentarios de cada
+% código para que observes el uso de estos
+%
+%% Entregables sistemas en diferencias
+% Para sistemas diferenciales realiza un programa con las siguientes
+% características
+% 
+% # Muestra la función de transferencia del sistema
+% # Muestra la respuesta al impulso (simbólico, gráfica, ver KroneckerDelta)
+% # Muestra la respuesta a entrada cero (simbólico, gráfica)
+% # Muestra la respuesta a estado cero (simbólico, gráfica)
+% # Muestra la respuesta total (simbólico, gráfica)
+% # La respuesta total al escalón con condiciones iniciales 0 (simbólico, gráfica) 
+% # Usando subplot, depliega una figura con 5 gráficas
+% 
+% Observa que los entregables pueden resolverse (solvo la función de 
+% transferencia) con llamadas a la funciones
+% presentadas en esta publicación
+%
+
+
+%% Practica 6. Señales continuas
+
+%%$${y(t)}\ddot+7{y(t)}\dot+10y(t)=sin(t), y(0)=0, y'(0)=1$$
+sympref('HeavisideAtOrigin', 1);
+syms t;
+disp('Señales continuas')
+
+figure (1)
+hFig = figure(1);
+set(hFig, 'Position', [0 0 900 900])
+axes1 = axes('Parent',hFig,'FontWeight','bold','FontSize',16);
+
+subplot(2,3,1);
+laplace2016a([10 7 1],[1],[0,1],dirac(t),10,'Respuesta al impulso')
+xlabel('tiempo','FontWeight','bold','FontSize',10)
+title('Respuesta al impulso','FontWeight','bold','FontSize',10)
+
+subplot(2,3,2);
+laplace2016b([10 7 1],[1],[0,1],0,10,'Respuesta a entrada 0')
+xlabel('tiempo','FontWeight','bold','FontSize',10)
+title('Respuesta a entrada 0','FontWeight','bold','FontSize',10)
+
+subplot(2,3,3);
+laplace2016a([10 7 1],[1],[0,0],sin(t),10,'Respuesta a estado 0')
+xlabel('tiempo','FontWeight','bold','FontSize',10)
+title('Respuesta a estado 0','FontWeight','bold','FontSize',10)
+
+subplot(2,3,4);
+laplace2016a([10 7 1],[1],[0,1],sin(t),10,'Respuesta total')
+xlabel('tiempo','FontWeight','bold','FontSize',10)
+title('Respuesta total','FontWeight','bold','FontSize',10)
+
+subplot(2,3,5);
+laplace2016a([10 7 1],[1],[0,0],heaviside(t),10,'Respuesta total')
+xlabel('tiempo','FontWeight','bold','FontSize',10)
+title('Respuesta total','FontWeight','bold','FontSize',10)
+
+%% Practica 6. Señales discretas
+%%$$y[n+2]+3y[n+1]+2y[n]=f[n+1]+3f[n]     y[0]=1   y[1]=2   f[n]=sin[n]    f[0]=1$$
+
+
+syms n;
+figure (2)
+hFig = figure(2);
+set(hFig, 'Position', [0 0 900 900])
+axes1 = axes('Parent',hFig,'FontWeight','bold','FontSize',16);
+
+subplot(2,3,1);
+zeta2016a([1 3 2],[1 3],[2 1],[1],kroneckerDelta(n),5,'Respuesta al impulso')
+xlabel('tiempo','FontWeight','bold','FontSize',10)
+title('Respuesta al impulso','FontWeight','bold','FontSize',10)
+
+subplot(2,3,2);
+zeta2016b([1 3 2],[1 3],[2 1],[1],-4,5,'Respuesta entrada 0')
+xlabel('tiempo','FontWeight','bold','FontSize',10)
+title('Respuesta entrada 0','FontWeight','bold','FontSize',10)
+
+subplot(2,3,3);
+zeta2016a([1 3 2],[1 3],[0 1],[1],sin(n),5,'Respuesta estado cero')
+xlabel('tiempo','FontWeight','bold','FontSize',10)
+title('Respuesta estado cero','FontWeight','bold','FontSize',10)
+
+subplot(2,3,4);
+zeta2016a([1 3 2],[1 3],[2 1],[1],sin(n),5,'Respuesta total')
+xlabel('tiempo','FontWeight','bold','FontSize',10)
+title('Respuesta total','FontWeight','bold','FontSize',10)
+
+subplot(2,3,5);
+zeta2016a([1 3 2],[1 3],[2 1],[1],heaviside(n),5,'Respuesta total heaviside')
+xlabel('tiempo','FontWeight','bold','FontSize',10)
+title('Respuesta total heaviside','FontWeight','bold','FontSize',10)
+
+
+
+##### SOURCE END #####
+--></body></html>
